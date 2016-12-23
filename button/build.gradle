@@ -15,18 +15,26 @@
  */
 
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion '24.0.3'
+    compileSdkVersion rootProject.ext.compile_sdk_version
+    buildToolsVersion rootProject.ext.build_tools_version
 
     defaultConfig {
         applicationId "com.example.androidthings.simplepio"
-        minSdkVersion 24
-        targetSdkVersion 24
+        minSdkVersion rootProject.ext.min_sdk_version
+        targetSdkVersion rootProject.ext.target_sdk_version
         versionCode 1
         versionName "1.0"
     }
+
+    dexOptions {
+        javaMaxHeapSize "2g"
+        preDexLibraries true
+        dexInProcess = true
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -36,5 +44,6 @@ android {
 }
 
 dependencies {
-    provided 'com.google.android.things:androidthings:0.1-devpreview'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.ext.kotlin_version"
+    provided "com.google.android.things:androidthings:$rootProject.ext.things_version"
 }
