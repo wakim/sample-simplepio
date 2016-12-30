@@ -6,6 +6,7 @@ import android.os.Handler
 import android.util.Log
 import com.google.android.things.pio.Gpio
 import com.google.android.things.pio.PeripheralManagerService
+import kotlinx.android.synthetic.main.activity_blink.*
 import java.io.IOException
 
 class BlinkActivity : Activity() {
@@ -26,6 +27,8 @@ class BlinkActivity : Activity() {
                 mLedGpio.value = !mLedGpio.value
                 Log.d(TAG, "State set to " + mLedGpio.value)
 
+                button.isChecked = mLedGpio.value
+
                 // Reschedule the same runnable in {#INTERVAL_BETWEEN_BLINKS_MS} milliseconds
                 mHandler.postDelayed(mBlinkRunnable, INTERVAL_BETWEEN_BLINKS_MS.toLong())
             } catch (e: IOException) {
@@ -36,6 +39,7 @@ class BlinkActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_blink)
 
         Log.i(TAG, "Starting BlinkActivity")
 
