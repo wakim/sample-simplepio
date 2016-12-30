@@ -34,9 +34,9 @@ allprojects {
 }
 
 ext {
-    min_sdk_version = 25
-    target_sdk_version = 25
-    compile_sdk_version = 25
+    min_sdk_version = 24
+    target_sdk_version = 24
+    compile_sdk_version = 24
     build_tools_version = '25.0.2'
 
     things_version = '0.1-devpreview'
